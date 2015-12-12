@@ -39,14 +39,14 @@ public final class Audi extends Car {
 	@Override
 	public void Move() {
 		
-		System.out.println();
+		//System.out.println();
 		MyLogger.log("The Audi has moved\n");
 		
 	}
 	
 	public void PrintYearOfTheAudi(){
 		
-		System.out.println();
+		//System.out.println();
 		MyLogger.log("The Audi was made in : " + getYear() + "\n");
 	}
 

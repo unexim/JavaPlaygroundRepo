@@ -1,28 +1,25 @@
 package internalTrainingsTask;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class MyLogger {
 	
+	
+	
 	public static void log(String message) { 
 		
-	      PrintWriter out = null;
-		try {
+		try{
 			
-			out = new PrintWriter(new FileWriter("output.txt", true), true);
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}finally{
-			
+			PrintWriter out = new PrintWriter("output.txt");
+			out.println(message);
 			out.close();
 		}
-		
-	      out.write(message);
-	      out.close();
-	      
+		catch(IOException iox){
+			
+			iox.printStackTrace();
+		}
+	    		
 	    }
     
 }
