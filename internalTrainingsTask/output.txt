@@ -1,0 +1,55 @@
+A Boat was created with : 
+0 Wheels
+unknown Model 
+PetrolEngine Engine
+0.0 Maxspeed 
+ with passengers :false
+
+A Boat was created with : 
+0 Wheels
+unknown Model 
+PetrolEngine Engine
+0.0 Maxspeed 
+ with passengers :false
+
+Boat is moving 
+
+boat is floating 
+
+A Truck was created with : 
+4 Wheels
+unknown Model 
+PetrolEngine Engine
+0.0 Maxspeed 
+
+A Truck was created with : 
+4 Wheels
+unknown Model 
+PetrolEngine Engine
+0.0 Maxspeed 
+
+The Truck is moving! 
+
+A Car was created with : 
+4 Wheels
+Audi Model 
+DieselEngine Engine
+200.0 Maxspeed 
+
+The Car is moving 
+
+A Car was created with : 
+4 Wheels
+A4 Model 
+PetrolEngine Engine
+200.0 Maxspeed 
+
+An Audi was created with : 
+4 Wheels
+A4 Model 
+PetrolEngine Engine
+200.0 Maxspeed 
+2002 year made 
+
+The Audi has moved
+
