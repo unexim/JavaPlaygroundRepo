@@ -9,14 +9,14 @@ public class Truck extends Vehicle {
 		setEngineType(engineType);
 		setMaxSpeed(maxSpeed);
 		
-		MyLogger.log("A Boat was created with : \n" + getWheels() + " Wheels\n" + getModel() + " Model \n" + getEngineType() + " Engine\n" + getMaxSpeed() + " Maxspeed \n");
+		MyLogger.log("A Truck was created with : \n" + getWheels() + " Wheels\n" + getModel() + " Model \n" + getEngineType() + " Engine\n" + getMaxSpeed() + " Maxspeed \n");
 		
 	}
 	
 	public Truck(){
 		this(4,"unknown",DEFAULT_ENGINE,0);
 		
-		MyLogger.log("A Boat was created with : \n" + getWheels() + " Wheels\n" + getModel() + " Model \n" + getEngineType() + " Engine\n" + getMaxSpeed() + " Maxspeed \n");
+		MyLogger.log("A Truck was created with : \n" + getWheels() + " Wheels\n" + getModel() + " Model \n" + getEngineType() + " Engine\n" + getMaxSpeed() + " Maxspeed \n");
 	}
 
 	@Override
