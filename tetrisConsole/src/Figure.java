@@ -1,5 +1,11 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+import javax.swing.JFrame;
+import javax.swing.JRootPane;
 
 public class Figure {
 
@@ -110,64 +116,89 @@ public class Figure {
 
     }
 
-    public static char[][] returnRandomFigure() {
+    private static List<Class<? extends Figure>> listOfFigs = new ArrayList<>();
 
-        ArrayList<Figure> listOfFigs = new ArrayList<Figure>();
-        listOfFigs.add(new Ifig());
-        listOfFigs.add(new Lfig());
-        listOfFigs.add(new Ofig());
-        listOfFigs.add(new Sfig());
-        listOfFigs.add(new Tfig());
+    static {
+        listOfFigs.add(Ifig.class);
+        listOfFigs.add(Lfig.class);
+        listOfFigs.add(Ofig.class);
+        listOfFigs.add(Sfig.class);
+        listOfFigs.add(Tfig.class);
+    }
 
-        Random rand = new Random();
+    private static Random rand = new Random();
 
-        int randNum = rand.nextInt(5);
+    public static Figure returnRandomFigure() {
 
-        switch (randNum) {
-            case 0:
-                return listOfFigs.get(0).getFig();
-            case 1:
-                return listOfFigs.get(1).getFig();
-            case 2:
-                return listOfFigs.get(2).getFig();
-            case 3:
-                return listOfFigs.get(3).getFig();
-            case 4:
-                return listOfFigs.get(4).getFig();
-            default:
-                break;
+        int randNum = rand.nextInt(listOfFigs.size());
+
+        try {
+            return listOfFigs.get(randNum).newInstance();
+        } catch (Throwable t) {
+            throw new RuntimeException(t);
         }
+    }
 
-        return null;
+    public static void getCh() { // TODO : check how it works
+        final JFrame frame = new JFrame();
+        synchronized (frame) {
+            frame.setUndecorated(true);
+            frame.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
+            frame.addKeyListener(new KeyListener() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    synchronized (frame) {
+                        frame.setVisible(false);
+                        frame.dispose();
+                        frame.notify();
+                    }
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                }
+
+                @Override
+                public void keyTyped(KeyEvent e) {
+                }
+            });
+            frame.setVisible(true);
+            try {
+                frame.wait();
+            } catch (InterruptedException e1) {
+            }
+        }
     }
 
     public static void main(String... strings) {
 
-        Figure l = new Figure();
-        l.setFig(returnRandomFigure());
-        Board b = new Board();
+        Figure l = returnRandomFigure();
 
-        l.setY(7);
-        int x = 0;
+        Board b = new Board();
+        // l.setY(7);
         // l.setX(13);
         // b.canMoveDown(l);
         // b.printField(b.printFigToField(l));
         // b.printField(b.getGameField());
         // b.printField(b.getGameField());
 
-        for (;;) {
+        while (true) {
 
-            b.printField(b.getGameField());
+            // b.printField(b.getGameField());
             b.printField(b.printFigToField(l));
             if (!b.canMoveDown(l)) {
                 b.printField(b.printFigToField(l));
-                l.setFig(returnRandomFigure());
-                break;
+                l = returnRandomFigure();
+                if (!b.canMoveDown(l)) {
+                    System.out.println("End of game");
+                    break;
+                }
+
             }
-            l.setX(x++);
+            l.setX(l.getX() + 1);
 
             try {
-                Thread.sleep(500);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
             }
         }
